@@ -1,15 +1,14 @@
 package com.github.domgold.doctools.asciidoctor.gherkin;
 
 import org.asciidoctor.Asciidoctor;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class GherkinExtensionRegistryTest {
+class GherkinExtensionRegistryTest {
 
 	@Test
-	public void test() {
+	void test() {
 		Asciidoctor asciidoctor = Asciidoctor.Factory.create();
 		GherkinExtensionRegistry reg = new GherkinExtensionRegistry();
 		reg.register(asciidoctor);
 	}
-
 }

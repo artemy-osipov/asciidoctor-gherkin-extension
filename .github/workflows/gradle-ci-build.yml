@@ -14,5 +14,9 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: 11
-    - run: ./gradlew build
-    - run: ./gradlew example:asciidoctor
+    - uses: eskatos/gradle-command-action@v1
+      with:
+        arguments: build
+    - uses: eskatos/gradle-command-action@v1
+      with:
+        arguments: example:asciidoctor
