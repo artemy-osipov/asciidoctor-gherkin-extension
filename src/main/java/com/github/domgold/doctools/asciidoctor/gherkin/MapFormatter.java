@@ -8,13 +8,13 @@ import gherkin.formatter.model.Scenario;
 import gherkin.formatter.model.ScenarioOutline;
 import gherkin.formatter.model.Step;
 import gherkin.parser.Parser;
+import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.io.IOUtils;
 
 /**
  * A gherkin {@link Formatter} producing a {@link Map} containing keys with the feature's content.
@@ -28,18 +28,13 @@ public class MapFormatter implements Formatter {
 	 * @return the default template content.
 	 */
 	public static String getDefaultTemplate() {
-
-		String text = "";
 		try {
-			text = IOUtils
-					.toString(
-							MapFormatter.class
-									.getResourceAsStream("default_template.erb"),
-							"UTF-8");
+			return IOUtils.toString(
+							MapFormatter.class.getResourceAsStream("default_template.erb"),
+							StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		return text;
 	}
 
 	/**

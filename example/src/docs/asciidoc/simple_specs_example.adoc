@@ -1,0 +1,7 @@
+= Simple specs example
+
+== My features
+
+gherkin::./resources/features/simple.feature[]
+
+gherkin::./resources/features/simple2.feature[]

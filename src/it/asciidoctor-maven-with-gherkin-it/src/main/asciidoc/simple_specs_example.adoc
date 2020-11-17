@@ -1,7 +1,0 @@
-= Simple specs example
-
-== My features
-
-gherkin::../../test/resources/features/simple.feature[]
-
-gherkin::../../test/resources/features/simple2.feature[]

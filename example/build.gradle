@@ -1,0 +1,18 @@
+plugins {
+    id "org.asciidoctor.jvm.convert" version "3.3.0"
+}
+
+version = '0.1.0'
+
+configurations {
+    asciidoctorExt
+}
+
+dependencies {
+    asciidoctorExt rootProject
+}
+
+asciidoctor {
+    baseDirFollowsSourceFile()
+    configurations 'asciidoctorExt'
+}

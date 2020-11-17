@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'nebula.release' version '15.3.0'
+    id 'com.jfrog.bintray' version '1.8.5'
+    id 'com.github.ben-manes.versions' version '0.36.0'
+}
+
+allprojects {
+    group = 'io.github.artemy.osipov'
+
+    repositories {
+        jcenter()
+    }
+}
+
+dependencies {
+    implementation 'org.asciidoctor:asciidoctorj:2.4.2'
+    implementation 'info.cukes:gherkin:2.12.2'
+    implementation 'commons-io:commons-io:2.8.0'
+
+    testImplementation(platform('org.junit:junit-bom:5.7.0'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    options.release = 8
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['maven']
+    pkg {
+        repo = 'oss'
+        name = project.name
+        licenses = ['Apache-2.0']
+        desc = 'gherkin extension for asciidoctor'
+        websiteUrl = 'https://github.com/artemy-osipov/asciidoctor-gherkin-extension'
+        issueTrackerUrl = 'https://github.com/artemy-osipov/asciidoctor-gherkin-extension/issues'
+        vcsUrl = 'https://github.com/artemy-osipov/asciidoctor-gherkin-extension.git'
+
+        githubRepo = 'artemy-osipov/asciidoctor-gherkin-extension'
+        githubReleaseNotesFile = 'README.adoc'
+    }
+}
+
